@@ -1,0 +1,38 @@
+name: ecommerce_mobile
+description: Mobile E-Commerce App for mobile models/phones.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP
+  http: ^1.2.1
+
+  # State management
+  provider: ^6.1.2
+
+  # Local storage (token persistence)
+  shared_preferences: ^2.2.3
+
+  # UI helpers
+  cached_network_image: ^3.3.1
+  flutter_spinkit: ^5.2.1
+  fluttertoast: ^8.2.5
+
+  # Icons
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
