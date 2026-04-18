@@ -23,7 +23,7 @@ jobs:
           flutter-version: '3.22.0'
 
       - name: Recreate Android folder
-        run: flutter create .
+        run: flutter create . --project-name mobile_app
 
       - name: Install dependencies
         run: flutter pub get
