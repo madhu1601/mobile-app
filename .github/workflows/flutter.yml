@@ -19,8 +19,6 @@ jobs:
         with:
           flutter-version: '3.22.0'
 
-      # ✅ IMPORTANT: DO NOT use flutter create
-
       - name: Install dependencies
         run: flutter pub get
 
