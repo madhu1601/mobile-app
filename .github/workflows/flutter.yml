@@ -19,8 +19,7 @@ jobs:
         with:
           flutter-version: '3.22.0'
 
-      - name: Fix Android only
-        run: flutter create . --project-name mobile_app --platforms=android
+      # ✅ IMPORTANT: DO NOT use flutter create
 
       - name: Install dependencies
         run: flutter pub get
