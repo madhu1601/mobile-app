@@ -19,6 +19,13 @@ jobs:
         with:
           flutter-version: '3.22.0'
 
+      # 🔥 FIX: Only generate Android files safely
+      - name: Fix Android only
+        run: flutter create . --project-name mobile_app --platforms=android
+
+      - name: Restore your app code (IMPORTANT)
+        run: git checkout -- lib/
+
       - name: Install dependencies
         run: flutter pub get
 
