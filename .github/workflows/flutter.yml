@@ -19,8 +19,8 @@ jobs:
         with:
           flutter-version: '3.22.0'
 
-      - name: Create project (fix Android + embedding)
-        run: flutter create . --project-name mobile_app
+      - name: Fix Android only
+        run: flutter create . --project-name mobile_app --platforms=android
 
       - name: Install dependencies
         run: flutter pub get
