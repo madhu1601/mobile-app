@@ -19,12 +19,14 @@ jobs:
         with:
           flutter-version: '3.22.0'
 
-      # 🔥 FIX: Only generate Android files safely
-      - name: Fix Android only
-        run: flutter create . --project-name mobile_app --platforms=android
+      # 🔥 Fix ONLY Android (safe way)
+      - name: Fix Android embedding safely
+        run: |
+          rm -rf android
+          flutter create . --project-name mobile_app --platforms=android
 
-      - name: Restore your app code (IMPORTANT)
-        run: git checkout -- lib/
+      - name: Restore your app code
+        run: unzip mobile.zip -o
 
       - name: Install dependencies
         run: flutter pub get
@@ -32,8 +34,7 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: build/app/outputs/flutter-apk/app-release.apk
