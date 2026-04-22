@@ -19,9 +19,8 @@ jobs:
         with:
           flutter-version: '3.22.0'
 
-      # 🔥 IMPORTANT STEP (this fixes everything)
-      - name: Create missing Android files
-        run: flutter create .
+      - name: Create project (fix Android + embedding)
+        run: flutter create . --project-name mobile_app
 
       - name: Install dependencies
         run: flutter pub get
