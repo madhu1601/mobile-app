@@ -1,46 +1,41 @@
 name: Build APK
 
 on:
-push:
-branches: ["main"]
+  push:
+    branches: [ "main" ]
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  # ✅ Unzip project into mobile folder
-  - name: Unzip project
-    run: unzip mobile.zip -d mobile
+      - name: Unzip project
+        run: unzip mobile.zip
 
-  - name: Setup Flutter
-    uses: subosito/flutter-action@v2
-    with:
-      flutter-version: '3.22.0'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
 
-  # 🔥 Fix Android (inside mobile folder)
-  - name: Fix Android embedding safely
-    working-directory: mobile
-    run: |
-      rm -rf android
-      flutter create . --project-name mobile_app --platforms=android
+      # 🔥 Fix ONLY Android (safe)
+      - name: Fix Android embedding safely
+        run: |
+          rm -rf android
+          flutter create . --project-name mobile_app --platforms=android
 
-  # ✅ Restore your app code
-  - name: Restore your app code
-    working-directory: mobile
-    run: unzip -o ../mobile.zip
+      # ✅ FIXED (correct unzip syntax)
+      - name: Restore your app code
+        run: unzip -o mobile.zip
 
-  - name: Install dependencies
-    working-directory: mobile
-    run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-  - name: Build APK
-    working-directory: mobile
-    run: flutter build apk --release
+      - name: Build APK
+        run: flutter build apk --release
 
-  - uses: actions/upload-artifact@v4
-    with:
-      name: mdtelecom-release-apk
-      path: mobile/build/app/outputs/flutter-apk/app-release.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
