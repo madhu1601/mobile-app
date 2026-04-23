@@ -44,4 +44,3 @@ steps:
     with:
       name: mdtelecom-release-apk
       path: mobile/build/app/outputs/flutter-apk/app-release.apk
-```
